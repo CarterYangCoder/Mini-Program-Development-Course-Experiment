@@ -1,0 +1,18 @@
+<!--index.wxml-->
+<navigation-bar title="狼崽001" back="{{false}}" color="white" background="transparent"></navigation-bar>
+<scroll-view class="scrollarea" scroll-y type="list">
+  <view class="page {{isGirl ? 'warm' : 'cool'}}">
+    <view class="emoji">{{emoji}}</view>
+
+    <view class="title">Hello {{wording}}!</view>
+
+    <view class="card" bindtap="onNextPhrase">
+      <view class="phrase">{{phrase}}</view>
+      <view class="hint">点击卡片，有新的惊喜</view>
+    </view>
+
+    <view class="actions">
+      <view class="btn" bindtap="onSwitch">切换到{{isGirl ? '男生' : '女生'}}</view>
+    </view>
+  </view>
+</scroll-view>

@@ -1,0 +1,101 @@
+/**index.wxss**/
+page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.scrollarea {
+  flex: 1;
+  height: 100%;
+  overflow-y: hidden;
+}
+
+.page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48rpx;
+  box-sizing: border-box;
+}
+
+.warm {
+  background: linear-gradient(160deg, #ff9a76 0%, #fbc2eb 60%, #ffd1a9 100%);
+}
+.cool {
+  background: linear-gradient(160deg, #4facfe 0%, #00c6fb 60%, #a8edea 100%);
+}
+
+.emoji {
+  font-size: 200rpx;
+  line-height: 1;
+  margin-bottom: 40rpx;
+}
+
+.title {
+  margin-bottom: 56rpx;
+  font-size: 72rpx;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15);
+  letter-spacing: 4rpx;
+}
+
+.card {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.28);
+  border: 2rpx solid rgba(255, 255, 255, 0.55);
+  border-radius: 32rpx;
+  padding: 64rpx 40rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card:active {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.phrase {
+  display: block;
+  margin-bottom: 28rpx;
+  font-size: 40rpx;
+  color: #ffffff;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.hint {
+  display: block;
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.actions {
+  margin-top: 64rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  padding: 26rpx 72rpx;
+  border-radius: 999rpx;
+  background: #ffffff;
+  font-size: 32rpx;
+  font-weight: 600;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.12);
+}
+
+.warm .btn {
+  color: #e0607e;
+}
+.cool .btn {
+  color: #2980b9;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}

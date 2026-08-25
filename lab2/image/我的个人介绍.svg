@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#071a33"/>
+      <stop offset="45%" stop-color="#0d2b55"/>
+      <stop offset="100%" stop-color="#08203f"/>
+    </linearGradient>
+    <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#818cf8"/>
+    </linearGradient>
+    <linearGradient id="nameGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#bae6fd"/>
+    </linearGradient>
+    <radialGradient id="glowTL" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowBR" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+  <ellipse cx="220" cy="140" rx="340" ry="230" fill="url(#glowTL)"/>
+  <ellipse cx="1700" cy="880" rx="380" ry="260" fill="url(#glowBR)"/>
+
+  <!-- 二进制雨 -->
+  <g font-family="Consolas, monospace" font-size="19" fill="#60a5fa" opacity="0.09">
+    <text x="52" y="200">01101</text>
+    <text x="52" y="246">10010</text>
+    <text x="52" y="292">00111</text>
+    <text x="52" y="338">11010</text>
+    <text x="52" y="384">01001</text>
+    <text x="52" y="430">10100</text>
+    <text x="52" y="476">01110</text>
+    <text x="52" y="522">10001</text>
+    <text x="52" y="568">00110</text>
+    <text x="52" y="614">11001</text>
+    <text x="52" y="660">01011</text>
+    <text x="52" y="706">10110</text>
+    <text x="52" y="752">00011</text>
+    <text x="52" y="798">11100</text>
+    <text x="52" y="844">01010</text>
+    <text x="52" y="890">10101</text>
+    <text x="1868" y="220">10110</text>
+    <text x="1868" y="266">01001</text>
+    <text x="1868" y="312">11010</text>
+    <text x="1868" y="358">00101</text>
+    <text x="1868" y="404">10011</text>
+    <text x="1868" y="450">01100</text>
+    <text x="1868" y="496">11001</text>
+    <text x="1868" y="542">00010</text>
+    <text x="1868" y="588">10101</text>
+    <text x="1868" y="634">01011</text>
+    <text x="1868" y="680">10010</text>
+    <text x="1868" y="726">00110</text>
+    <text x="1868" y="772">11100</text>
+    <text x="1868" y="818">01001</text>
+    <text x="1868" y="864">10110</text>
+    <text x="1868" y="910">00011</text>
+  </g>
+
+  <!-- 角落电路装饰 -->
+  <g fill="none" stroke="#22d3ee" stroke-width="2" opacity="0.35">
+    <polyline points="40,120 40,58 104,58"/>
+    <polyline points="1880,120 1880,58 1816,58"/>
+    <polyline points="920,120 920,80 1000,80"/>
+  </g>
+  <g fill="#22d3ee" opacity="0.5">
+    <circle cx="40" cy="120" r="4"/><circle cx="104" cy="58" r="4"/>
+    <circle cx="1880" cy="120" r="4"/><circle cx="1816" cy="58" r="4"/>
+    <circle cx="1000" cy="80" r="4"/>
+  </g>
+
+  <!-- 星光点缀 -->
+  <g fill="#bae6fd" opacity="0.5">
+    <path d="M300,190 l3,8 8,3 -8,3 -3,8 -3,-8 -8,-3 8,-3 Z"/>
+    <path d="M1620,170 l3,8 8,3 -8,3 -3,8 -3,-8 -8,-3 8,-3 Z"/>
+    <path d="M880,300 l2.4,6.5 6.5,2.4 -6.5,2.4 -2.4,6.5 -2.4,-6.5 -6.5,-2.4 6.5,-2.4 Z"/>
+    <path d="M1040,860 l2.4,6.5 6.5,2.4 -6.5,2.4 -2.4,6.5 -2.4,-6.5 -6.5,-2.4 6.5,-2.4 Z"/>
+    <path d="M240,760 l2.4,6.5 6.5,2.4 -6.5,2.4 -2.4,6.5 -2.4,-6.5 -6.5,-2.4 6.5,-2.4 Z"/>
+    <path d="M1700,420 l2.4,6.5 6.5,2.4 -6.5,2.4 -2.4,6.5 -2.4,-6.5 -6.5,-2.4 6.5,-2.4 Z"/>
+  </g>
+
+  <!-- 盾牌水印 -->
+  <g transform="translate(960,560) scale(4.0)" fill="none" stroke="#3b82f6" stroke-width="5" opacity="0.05">
+    <path d="M0,-115 L92,-82 C92,15 58,88 0,118 C-58,88 -92,15 -92,-82 Z"/>
+  </g>
+
+  <!-- 校名 -->
+  <path d="M920,64 q20,-14 40,0 q20,14 40,0" fill="none" stroke="#7dd3fc" stroke-width="3" opacity="0.85" stroke-linecap="round"/>
+  <text x="960" y="118" text-anchor="middle" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="40" letter-spacing="10" fill="#dbeafe" font-weight="bold">中国海洋大学</text>
+  <text x="960" y="150" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="14" letter-spacing="4" fill="#7dd3fc" opacity="0.75">OCEAN UNIVERSITY OF CHINA</text>
+
+  <!-- 左侧：头像区（狼爪印记） -->
+  <circle cx="460" cy="420" r="128" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4 10" opacity="0.4"/>
+  <circle cx="460" cy="420" r="116" fill="none" stroke="url(#ringGrad)" stroke-width="3"/>
+  <circle cx="460" cy="420" r="106" fill="#0b3050" stroke="#164e78" stroke-width="1"/>
+  <g transform="translate(460,420) scale(1.8)" fill="#7dd3fc" filter="url(#softGlow)">
+    <ellipse cx="0" cy="18" rx="30" ry="22"/>
+    <ellipse cx="-33" cy="-13" rx="10" ry="13" transform="rotate(-20 -33 -13)"/>
+    <ellipse cx="-11" cy="-27" rx="10" ry="13" transform="rotate(-6 -11 -27)"/>
+    <ellipse cx="11" cy="-27" rx="10" ry="13" transform="rotate(6 11 -27)"/>
+    <ellipse cx="33" cy="-13" rx="10" ry="13" transform="rotate(20 33 -13)"/>
+  </g>
+
+  <!-- 左侧：姓名与专业 -->
+  <text x="460" y="650" text-anchor="middle" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="86" font-weight="bold" fill="url(#nameGrad)">杨思睿</text>
+  <text x="460" y="712" text-anchor="middle" font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="30" fill="#bfdbfe" letter-spacing="3">中国海洋大学 · 保密技术专业</text>
+  <text x="460" y="748" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="15" letter-spacing="5" fill="#38bdf8" opacity="0.85">CONFIDENTIALITY TECHNOLOGY</text>
+
+  <!-- 左侧：分隔线 + 锁 -->
+  <line x1="300" y1="798" x2="420" y2="798" stroke="#38bdf8" stroke-width="2" opacity="0.5"/>
+  <line x1="500" y1="798" x2="620" y2="798" stroke="#38bdf8" stroke-width="2" opacity="0.5"/>
+  <circle cx="300" cy="798" r="3" fill="#38bdf8" opacity="0.7"/>
+  <circle cx="620" cy="798" r="3" fill="#38bdf8" opacity="0.7"/>
+  <g filter="url(#softGlow)">
+    <path d="M448,790 v-9 a12,12 0 0 1 24,0 v9" fill="none" stroke="#facc15" stroke-width="5"/>
+    <rect x="440" y="788" width="40" height="32" rx="6" fill="#facc15"/>
+    <circle cx="460" cy="800" r="4.5" fill="#0b3050"/>
+    <rect x="457.5" y="803" width="5" height="9" rx="2.5" fill="#0b3050"/>
+  </g>
+
+  <!-- 右侧：信息面板 -->
+  <rect x="980" y="240" width="840" height="480" rx="24" fill="#ffffff" fill-opacity="0.045" stroke="#7dd3fc" stroke-opacity="0.28" stroke-width="1.5"/>
+  <g font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="29">
+    <text x="1040" y="330" fill="#7dd3fc">专业方向</text>
+    <text x="1270" y="330" fill="#eaf6ff">密码技术 · 信息安全</text>
+    <line x1="1015" y1="366" x2="1785" y2="366" stroke="#ffffff" stroke-opacity="0.08"/>
+    <text x="1040" y="452" fill="#7dd3fc">技能储备</text>
+    <text x="1270" y="452" fill="#eaf6ff">Python / C++ / Linux / 密码算法</text>
+    <line x1="1015" y1="488" x2="1785" y2="488" stroke="#ffffff" stroke-opacity="0.08"/>
+    <text x="1040" y="574" fill="#7dd3fc">兴趣领域</text>
+    <text x="1270" y="574" fill="#eaf6ff">数据加密 · 攻防演练 · 隐私保护</text>
+    <line x1="1015" y1="610" x2="1785" y2="610" stroke="#ffffff" stroke-opacity="0.08"/>
+    <text x="1040" y="672" fill="#7dd3fc">座右铭</text>
+    <text x="1270" y="672" fill="#fde68a">保密无小事，安全大于天</text>
+  </g>
+
+  <!-- 标签胶囊 -->
+  <g font-family="Microsoft YaHei, PingFang SC, sans-serif" font-size="23" fill="#bfdbfe" text-anchor="middle">
+    <rect x="633" y="790" width="150" height="52" rx="26" fill="#38bdf8" fill-opacity="0.10" stroke="#7dd3fc" stroke-opacity="0.35"/>
+    <text x="708" y="824"># 信息安全</text>
+    <rect x="809" y="790" width="126" height="52" rx="26" fill="#38bdf8" fill-opacity="0.10" stroke="#7dd3fc" stroke-opacity="0.35"/>
+    <text x="872" y="824"># 密码学</text>
+    <rect x="961" y="790" width="150" height="52" rx="26" fill="#38bdf8" fill-opacity="0.10" stroke="#7dd3fc" stroke-opacity="0.35"/>
+    <text x="1036" y="824"># 海大学子</text>
+    <rect x="1137" y="790" width="150" height="52" rx="26" fill="#38bdf8" fill-opacity="0.10" stroke="#7dd3fc" stroke-opacity="0.35"/>
+    <text x="1212" y="824"># 深蓝守护</text>
+  </g>
+
+  <!-- 页脚 -->
+  <text x="960" y="912" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="17" letter-spacing="7" fill="#7dd3fc" opacity="0.7">KEEP SECRET · KEEP SAFE · 2026</text>
+
+  <!-- 海浪 -->
+  <path d="M0,960 C240,910 480,1000 720,965 C960,930 1200,1010 1440,970 C1600,945 1780,1000 1920,965 L1920,1080 L0,1080 Z" fill="#0ea5e9" opacity="0.16"/>
+  <path d="M0,1005 C260,960 520,1040 780,1005 C1040,970 1300,1045 1560,1008 C1700,988 1830,1030 1920,1005 L1920,1080 L0,1080 Z" fill="#0284c7" opacity="0.28"/>
+  <path d="M0,1045 C300,1015 600,1075 900,1050 C1200,1025 1500,1078 1920,1048 L1920,1080 L0,1080 Z" fill="#075985" opacity="0.6"/>
+
+  <!-- 气泡 -->
+  <g stroke="#7dd3fc" fill="none" opacity="0.35">
+    <circle cx="1660" cy="940" r="6"/>
+    <circle cx="1710" cy="890" r="4"/>
+    <circle cx="1620" cy="855" r="3"/>
+    <circle cx="1760" cy="985" r="8"/>
+    <circle cx="150" cy="960" r="5"/>
+    <circle cx="200" cy="915" r="3"/>
+  </g>
+</svg>
