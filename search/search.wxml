@@ -1,0 +1,62 @@
+<view class="search-page">
+  <view class="search-header">
+    <view class="particles">
+      <view class="particle"></view><view class="particle"></view><view class="particle"></view><view class="particle"></view>
+      <view class="particle"></view><view class="particle"></view><view class="particle"></view><view class="particle"></view>
+    </view>
+    <view class="search-bar">
+      <text class="search-bar__icon">⌕</text>
+      <input class="search-bar__input" placeholder="输入关键词搜索新闻" placeholder-class="search-bar__placeholder" value="{{keyword}}" focus="true" bindinput="onInput" bindconfirm="onConfirm" />
+      <view wx:if="{{keyword}}" class="search-bar__clear" bindtap="onClear">×</view>
+    </view>
+    <view class="search-header__cancel" bindtap="goBack">取消</view>
+  </view>
+
+  <view wx:if="{{searched}}" class="result-meta">
+    找到 <text class="result-meta__count">{{results.length}}</text> 条与“{{keyword}}”相关的新闻
+  </view>
+
+  <view wx:if="{{searched}}" class="result-list">
+    <view class="result-card" wx:for="{{results}}" wx:key="id" data-id="{{item.id}}" bindtap="goToDetail">
+      <view class="result-card__body">
+        <view class="result-card__category">{{item.category}}</view>
+        <view class="result-card__title">{{item.title}}</view>
+        <view class="result-card__footer">
+          <text>{{item.source}}</text>
+          <text>{{item.add_date}}</text>
+        </view>
+      </view>
+      <image class="result-card__image" src="{{item.poster}}" mode="aspectFill"></image>
+    </view>
+  </view>
+
+  <view wx:if="{{searched && results.length === 0}}" class="search-empty">
+    <view class="search-empty__icon">⌕</view>
+    <view class="search-empty__title">没有找到相关新闻</view>
+    <view class="search-empty__hint">换个关键词试试，支持标题、正文、作者搜索</view>
+  </view>
+
+  <block wx:if="{{!searched}}">
+    <view wx:if="{{isLoggedIn && history.length > 0}}" class="history-panel">
+      <view class="history-panel__heading">
+        <view class="history-panel__title">搜索历史</view>
+        <view class="history-panel__clear" bindtap="clearHistory">清空</view>
+      </view>
+      <view class="history-panel__tags">
+        <view class="history-tag" wx:for="{{history}}" wx:key="*this" data-keyword="{{item}}" bindtap="tapHistory">{{item}}</view>
+      </view>
+    </view>
+
+    <view wx:elif="{{!isLoggedIn}}" class="search-empty">
+      <view class="search-empty__icon">♡</view>
+      <view class="search-empty__title">登录后查看搜索记录</view>
+      <view class="search-empty__hint">搜索功能可直接使用，搜索记录将在登录后保存和展示</view>
+    </view>
+
+    <view wx:else class="search-empty">
+      <view class="search-empty__icon">✎</view>
+      <view class="search-empty__title">输入关键词开始搜索</view>
+      <view class="search-empty__hint">支持标题、正文、作者、来源关键词，空格可组合多个关键词</view>
+    </view>
+  </block>
+</view>

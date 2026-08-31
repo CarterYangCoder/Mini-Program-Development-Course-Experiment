@@ -1,0 +1,89 @@
+.page { min-height: 100vh; background: #f5f6f8; }
+
+.splash { position: fixed; inset: 0; z-index: 99; overflow: hidden; background: #0a1a2f; }
+.splash--leaving { opacity: 0; transition: opacity .45s ease; }
+.splash__image { position: absolute; inset: 0; width: 100%; height: 100%; animation: splash-zoom 3.4s ease-out both; }
+.splash__shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,20,38,.42) 0%, rgba(6,20,38,.18) 42%, rgba(6,20,38,.82) 100%); }
+.splash__content { position: absolute; right: 0; bottom: 26%; left: 0; color: #ffffff; text-align: center; }
+.splash__badge { display: inline-block; padding: 8rpx 26rpx; border: 1rpx solid rgba(255,255,255,.45); border-radius: 999rpx; background: rgba(255,255,255,.12); font-size: 21rpx; letter-spacing: 3rpx; opacity: 0; animation: splash-rise .7s ease .3s both; }
+.splash__title { margin-top: 30rpx; font-family: SimSun, "Songti SC", serif; font-size: 58rpx; font-weight: 700; letter-spacing: 8rpx; text-shadow: 0 4rpx 18rpx rgba(0,0,0,.35); opacity: 0; animation: splash-rise .7s ease .55s both; }
+.splash__title-strong { margin-right: 10rpx; color: #ff6d64; font-size: 72rpx; font-style: italic; }
+.splash__rule { display: flex; align-items: center; justify-content: center; gap: 14rpx; margin-top: 30rpx; opacity: 0; animation: splash-rise .7s ease .8s both; }
+.splash__rule::before, .splash__rule::after { width: 110rpx; height: 2rpx; background: linear-gradient(90deg, transparent, rgba(255,255,255,.85)); content: ""; }
+.splash__rule::after { background: linear-gradient(90deg, rgba(255,255,255,.85), transparent); }
+.splash__rule-dot { width: 12rpx; height: 12rpx; background: #ff4338; transform: rotate(45deg); }
+.splash__slogan { margin-top: 24rpx; color: rgba(255,255,255,.86); font-size: 25rpx; letter-spacing: 6rpx; opacity: 0; animation: splash-rise .7s ease .95s both; }
+.splash__skip { position: absolute; right: 34rpx; bottom: 48rpx; padding: 10rpx 24rpx; border: 1rpx solid rgba(255,255,255,.4); border-radius: 999rpx; color: rgba(255,255,255,.85); font-size: 22rpx; opacity: 0; animation: splash-rise .7s ease 1.2s both; }
+
+@keyframes splash-zoom {
+  from { transform: scale(1.12); }
+  to { transform: scale(1); }
+}
+
+@keyframes splash-rise {
+  from { opacity: 0; transform: translateY(34rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.brand-header { position: relative; overflow: hidden; padding: 34rpx 32rpx 30rpx; background: linear-gradient(145deg, #d71920 0%, #ee2d24 70%, #f04b36 100%); color: #ffffff; }
+.brand-header .brand-row, .brand-header .search-box { position: relative; z-index: 1; }
+.brand-row { display: flex; align-items: center; justify-content: space-between; }
+.brand-name { font-family: SimSun, "Songti SC", serif; font-size: 43rpx; font-weight: 700; letter-spacing: 2rpx; }
+.brand-name__strong { margin-right: 10rpx; font-size: 54rpx; font-style: italic; }
+.brand-slogan { margin-top: 3rpx; color: rgba(255,255,255,.78); font-size: 22rpx; letter-spacing: 3rpx; }
+.brand-badge { display: flex; align-items: baseline; padding-left: 26rpx; border-left: 1rpx solid rgba(255,255,255,.35); }
+.brand-badge__number { font-size: 42rpx; font-weight: 700; }
+.brand-badge__label { margin-left: 7rpx; color: rgba(255,255,255,.78); font-size: 21rpx; }
+
+.search-box { display: flex; align-items: center; height: 76rpx; margin-top: 28rpx; padding: 0 24rpx; border: 1rpx solid rgba(255,255,255,.2); border-radius: 38rpx; background: rgba(255,255,255,.2); }
+.search-box__icon { display: flex; align-items: center; justify-content: center; margin-right: 12rpx; font-size: 32rpx; line-height: 76rpx; }
+.search-box__input { display: flex; flex: 1; align-items: center; height: 76rpx; color: #ffffff; font-size: 28rpx; line-height: 76rpx; }
+.search-box__placeholder { color: rgba(255,255,255,.72); }
+
+.channel-nav { position: sticky; top: 0; z-index: 5; height: 94rpx; background: #ffffff; box-shadow: 0 5rpx 18rpx rgba(16,24,40,.06); white-space: nowrap; }
+.channel-nav__inner { display: inline-flex; align-items: stretch; height: 94rpx; padding: 0 18rpx; }
+.channel-tab { position: relative; min-width: 112rpx; height: 94rpx; padding: 0 20rpx; color: #606874; font-size: 30rpx; line-height: 94rpx; text-align: center; }
+.channel-tab--active { color: #d71920; font-weight: 700; }
+.channel-tab--active::after { position: absolute; right: 24rpx; bottom: 0; left: 24rpx; height: 6rpx; border-radius: 3rpx; background: #d71920; content: ""; }
+
+.content { padding: 24rpx 24rpx 40rpx; }
+.focus-swiper { height: 430rpx; overflow: hidden; border-radius: 20rpx; background: #d9dde3; box-shadow: 0 14rpx 34rpx rgba(16,24,40,.14); }
+.focus-slide { position: relative; width: 100%; height: 100%; overflow: hidden; }
+.focus-slide__image { width: 100%; height: 100%; }
+.focus-slide__shade { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 28%, rgba(0,0,0,.8) 100%); }
+.focus-slide__content { position: absolute; right: 30rpx; bottom: 42rpx; left: 30rpx; color: #ffffff; }
+.focus-slide__tag { display: inline-block; margin-bottom: 14rpx; padding: 6rpx 16rpx; border-radius: 4rpx; background: #d71920; font-size: 22rpx; font-weight: 700; }
+.focus-slide__title { display: -webkit-box; overflow: hidden; font-family: SimSun, "Songti SC", serif; font-size: 36rpx; font-weight: 700; line-height: 1.4; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.focus-slide__meta { margin-top: 11rpx; color: rgba(255,255,255,.75); font-size: 21rpx; }
+
+.ticker { display: flex; align-items: center; height: 76rpx; margin-top: 20rpx; padding: 0 22rpx; border-radius: 12rpx; background: #ffffff; box-shadow: 0 5rpx 18rpx rgba(16,24,40,.05); }
+.ticker__label { flex: none; margin-right: 18rpx; padding-right: 18rpx; border-right: 1rpx solid #f1c8ca; color: #d71920; font-size: 25rpx; font-weight: 700; }
+.ticker__text { flex: 1; overflow: hidden; color: #2b313b; font-size: 25rpx; text-overflow: ellipsis; white-space: nowrap; }
+.ticker__arrow { margin-left: 12rpx; color: #a0a7b1; font-size: 42rpx; }
+
+.section-title { display: flex; align-items: flex-end; justify-content: space-between; padding: 42rpx 4rpx 22rpx; }
+.section-title--news { padding-top: 48rpx; }
+.section-title__main { position: relative; padding-left: 20rpx; color: #161b22; font-size: 35rpx; font-weight: 700; }
+.section-title__main::before { position: absolute; top: 6rpx; bottom: 6rpx; left: 0; width: 7rpx; border-radius: 4rpx; background: #d71920; content: ""; }
+.section-title__sub { margin-top: 8rpx; padding-left: 20rpx; color: #9299a3; font-size: 22rpx; }
+.section-title__count { color: #a0a7b1; font-size: 23rpx; }
+
+.news-list { overflow: hidden; border-radius: 16rpx; background: #ffffff; box-shadow: 0 7rpx 24rpx rgba(16,24,40,.05); }
+.swipe-item { position: relative; }
+.swipe-item__card { position: relative; z-index: 1; background: #ffffff; transition: transform .18s ease-out; }
+.swipe-item__action { position: absolute; top: 0; right: 24rpx; bottom: 1rpx; z-index: 0; display: flex; align-items: center; justify-content: center; width: 140rpx; border-radius: 0 10rpx 10rpx 0; background: #d71920; color: #ffffff; font-size: 25rpx; font-weight: 600; }
+.swipe-item__action--faved { background: #c47a15; }
+.news-card { display: flex; min-height: 184rpx; margin: 0 24rpx; padding: 25rpx 0; border-bottom: 1rpx solid #eceff2; border-radius: 0; box-shadow: none; }
+.news-card:last-child { border-bottom: 0; }
+.news-card__body { display: flex; flex: 1; min-width: 0; flex-direction: column; padding-right: 22rpx; }
+.news-card__category { align-self: flex-start; margin-bottom: 10rpx; color: #d71920; font-size: 21rpx; font-weight: 700; }
+.news-card__title { display: -webkit-box; overflow: hidden; color: #20242c; font-family: SimSun, "Songti SC", serif; font-size: 30rpx; font-weight: 600; line-height: 1.5; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.news-card__footer { display: flex; gap: 16rpx; margin-top: auto; color: #a0a6ae; font-size: 21rpx; }
+.news-card__image { flex: none; width: 210rpx; height: 142rpx; margin: 0; border-radius: 10rpx; background: #e9edf1; }
+.empty-state { background: #ffffff; }
+
+@media (max-width: 360px) {
+  .brand-header { padding-right: 24rpx; padding-left: 24rpx; }
+  .content { padding-right: 18rpx; padding-left: 18rpx; }
+  .news-card__image { width: 180rpx; }
+}

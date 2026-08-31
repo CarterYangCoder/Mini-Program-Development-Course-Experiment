@@ -1,0 +1,186 @@
+<view class="detail-page" wx:if="{{article}}">
+  <view class="particles particles--gold" style="height: 620rpx; bottom: auto;">
+    <view class="particle"></view><view class="particle"></view><view class="particle"></view><view class="particle"></view>
+    <view class="particle"></view><view class="particle"></view><view class="particle"></view><view class="particle"></view>
+  </view>
+  <view class="article">
+    <view class="article-hero">
+      <view class="article-hero__glow"></view>
+      <view class="article-kicker">
+        <view class="article-kicker__badge">海大新闻</view>
+        <view class="article-kicker__category">{{article.category}}</view>
+        <view class="article-kicker__en">OUC NEWS</view>
+      </view>
+
+      <view class="article__title">{{article.title}}</view>
+
+      <view class="article__rule">
+        <view class="article__rule-line"></view>
+        <view class="article__rule-dot"></view>
+        <view class="article__rule-line article__rule-line--short"></view>
+      </view>
+
+      <view class="article__meta-bar">
+        <view class="article__meta">
+          <view class="meta-item">
+            <text class="meta-item__label">作者</text>
+            <text class="meta-item__value">{{article.author}}</text>
+          </view>
+          <view class="meta-item">
+            <text class="meta-item__label">来源</text>
+            <text class="meta-item__value">{{article.source}}</text>
+          </view>
+          <view class="meta-item meta-item--date">
+            <text class="meta-item__label">发布</text>
+            <text class="meta-item__value">{{article.add_date}}</text>
+          </view>
+        </view>
+
+        <view class="article__tools">
+          <button class="share-button" open-type="share">
+            <text class="share-button__icon">↗</text>
+            <text>分享报道</text>
+          </button>
+          <view class="font-switch">
+            <text class="font-label">阅读字号</text>
+            <text class="font-option {{fontSize === 'small' ? 'font-option--active' : ''}}" data-size="small" bindtap="setFontSize">小</text>
+            <text class="font-option {{fontSize === 'medium' ? 'font-option--active' : ''}}" data-size="medium" bindtap="setFontSize">中</text>
+            <text class="font-option {{fontSize === 'large' ? 'font-option--active' : ''}}" data-size="large" bindtap="setFontSize">大</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="poster-card">
+      <view class="poster-card__corner">现场</view>
+      <image class="article__poster" src="{{article.poster}}" mode="widthFix"></image>
+      <view class="poster-card__caption">
+        <view class="poster-card__caption-left">
+          <view class="poster-card__dot"></view>
+          <text>新闻影像</text>
+        </view>
+        <text>中国海洋大学新闻网</text>
+      </view>
+    </view>
+
+    <view class="reading-card">
+      <view class="reading-card__head">
+        <view class="reading-card__label">
+          <view class="reading-card__mark"></view>
+          <text>报道正文</text>
+        </view>
+        <text class="reading-card__en">READING</text>
+      </view>
+
+      <view class="article__body article__body--{{fontSize}}">
+        <view class="article__paragraph" wx:for="{{paragraphs}}" wx:key="id">
+          <text wx:if="{{item.hasLead}}" class="article__lead">本站讯 </text><text>{{item.text}}</text>
+        </view>
+      </view>
+
+      <view class="article__byline">
+        <view class="article__byline-line"></view>
+        <text>文：{{article.author}}</text>
+      </view>
+    </view>
+
+    <view class="community-card">
+      <view class="community-card__head">
+        <view>
+          <view class="community-card__eyebrow">RESPONSE</view>
+          <view class="community-card__title">为这篇报道留下回响</view>
+        </view>
+        <view class="community-card__stamp">
+          <text>海大</text>
+          <text>读者</text>
+        </view>
+      </view>
+
+      <block wx:if="{{isLoggedIn}}">
+        <view class="interact">
+          <view class="interact__btn {{liked ? 'interact__btn--liked' : ''}}" bindtap="toggleLike">
+            <view class="interact__icon {{likeBurst ? 'burst' : ''}}">{{liked ? '♥' : '♡'}}</view>
+            <view class="interact__label">点赞</view>
+            <view class="interact__count">{{likeCount}}</view>
+          </view>
+          <view class="interact__divider"></view>
+          <view class="interact__btn {{isFavorite ? 'interact__btn--faved' : ''}}" bindtap="{{isFavorite ? 'removeFavorite' : 'addFavorite'}}">
+            <view class="interact__icon {{favBurst ? 'burst' : ''}}">{{isFavorite ? '★' : '☆'}}</view>
+            <view class="interact__label">收藏</view>
+            <view class="interact__count">{{favoriteCount}}</view>
+          </view>
+          <view class="interact__divider"></view>
+          <view class="interact__btn">
+            <view class="interact__icon">✎</view>
+            <view class="interact__label">评论</view>
+            <view class="interact__count">{{comments.length}}</view>
+          </view>
+        </view>
+
+        <view class="comments">
+          <view class="comments__heading">
+            <view class="comments__title">全部评论</view>
+            <view class="comments__count">{{comments.length}} 条</view>
+          </view>
+
+        <view wx:if="{{replyTo}}" class="reply-banner">
+          <text class="reply-banner__text">回复 @{{replyToName}}</text>
+          <text class="reply-banner__cancel" bindtap="cancelReply">×</text>
+        </view>
+        <view class="comment-form">
+          <input class="comment-form__input" placeholder="{{replyTo ? '回复 @' + replyToName + '…' : '写下你的看法…'}}" placeholder-class="comment-form__placeholder" value="{{commentText}}" focus="{{replyTo}}" bindinput="onCommentInput" bindconfirm="submitComment" />
+          <view class="comment-form__send {{commentText.trim() ? 'comment-form__send--active' : ''}}" bindtap="submitComment">{{replyTo ? '回复' : '发表'}}</view>
+        </view>
+
+        <view class="comment" wx:for="{{comments}}" wx:key="id">
+          <image class="comment__avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+          <view class="comment__body">
+            <view class="comment__top">
+              <text class="comment__name">{{item.name}}</text>
+              <view class="comment__like {{item.likedByMe ? 'comment__like--active' : ''}}" data-id="{{item.id}}" catchtap="toggleCommentLike">
+                <text class="comment__like-icon">{{item.likedByMe ? '♥' : '♡'}}</text>
+                <text wx:if="{{item.likes > 0}}">{{item.likes}}</text>
+              </view>
+            </view>
+            <view class="comment__text">{{item.text}}</view>
+            <view class="comment__footer">
+              <text class="comment__time">{{item.time}}</text>
+              <text class="comment__action" data-id="{{item.id}}" data-name="{{item.name}}" catchtap="tapReply">回复</text>
+              <text class="comment__action comment__action--danger" data-id="{{item.id}}" catchtap="deleteComment">删除</text>
+            </view>
+            <view class="comment__replies" wx:if="{{item.replies.length > 0}}">
+              <view class="reply" wx:for="{{item.replies}}" wx:for-item="reply" wx:key="id">
+                <text class="reply__name">{{reply.name}}：</text>
+                <text class="reply__text">{{reply.text}}</text>
+                <view class="reply__time">{{reply.time}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view wx:if="{{comments.length === 0}}" class="comments__empty">还没有评论，来说两句吧</view>
+        </view>
+      </block>
+
+      <view wx:else class="interact-locked">
+        <view class="interact-locked__icon">♡</view>
+        <view class="interact-locked__title">登录后可点赞、评论、收藏</view>
+        <view class="interact-locked__hint">登录后还能查看每篇新闻的互动数据</view>
+        <button class="interact-locked__login" bindtap="login">立即登录</button>
+      </view>
+    </view>
+
+    <view class="article__actions">
+      <button class="action-button" bindtap="copySourceLink">
+        <text class="action-button__icon">⌁</text>
+        <text>复制原文链接</text>
+      </button>
+      <view class="article__endmark">— OUC NEWS · END —</view>
+    </view>
+  </view>
+</view>
+
+<view wx:elif="{{notFound}}" class="empty-state">
+  <view class="empty-state__icon">!</view>
+  <view class="empty-state__title">没有找到这篇新闻</view>
+  <view class="empty-state__hint">内容可能已更新，请返回新闻列表重试</view>
+</view>

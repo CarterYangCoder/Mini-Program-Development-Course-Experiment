@@ -1,0 +1,46 @@
+{
+  "description": "实验3：高校新闻网微信小程序",
+  "packOptions": {
+    "ignore": [
+      {
+        "value": "lab3.pdf",
+        "type": "file"
+      },
+      {
+        "value": "tmp",
+        "type": "folder"
+      }
+    ],
+    "include": []
+  },
+  "setting": {
+    "checkSiteMap": true,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "urlCheck": false,
+    "compileWorklet": false,
+    "uglifyFileName": false,
+    "uploadWithSourceMap": true,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "minifyWXML": true,
+    "localPlugins": false,
+    "disableUseStrict": false,
+    "useCompilerPlugins": false,
+    "condition": false,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
+  },
+  "compileType": "miniprogram",
+  "appid": "wx231e695dd7a775ea",
+  "projectname": "campus-news",
+  "condition": {},
+  "simulatorPluginLibVersion": {},
+  "editorSetting": {}
+}

@@ -1,0 +1,23 @@
+{
+  "pages": ["index/index", "detail/detail", "my/my", "search/search"],
+  "window": {
+    "navigationBarBackgroundColor": "#d71920",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "海大新闻",
+    "backgroundColor": "#f5f7fa",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#666666",
+    "selectedColor": "#d71920",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {"pagePath": "index/index", "iconPath": "images/index.png", "selectedIconPath": "images/index_blue.png", "text": "首页"},
+      {"pagePath": "my/my", "iconPath": "images/my.png", "selectedIconPath": "images/my_blue.png", "text": "我的"}
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

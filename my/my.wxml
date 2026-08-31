@@ -1,0 +1,137 @@
+<view class="mine-page">
+  <view class="mine-header">
+    <view class="particles">
+      <view class="particle"></view><view class="particle"></view><view class="particle"></view><view class="particle"></view>
+      <view class="particle"></view><view class="particle"></view><view class="particle"></view><view class="particle"></view>
+    </view>
+    <view class="user-row">
+      <block wx:if="{{isLoggedIn}}">
+        <image class="user-avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill" bindtap="editProfile"></image>
+        <view class="user-info" bindtap="editProfile">
+          <view class="user-name">{{userInfo.nickName}} <text class="user-edit">✎</text></view>
+          <view class="user-hint">点头像或昵称可修改资料</view>
+        </view>
+        <button class="user-action user-action--logout" bindtap="logout">退出</button>
+      </block>
+      <block wx:else>
+        <view class="user-avatar user-avatar--placeholder">海</view>
+        <view class="user-info">
+          <view class="user-name">尚未登录</view>
+          <view class="user-hint">登录后同步展示你的新闻收藏</view>
+        </view>
+        <button class="user-action" bindtap="login">登录</button>
+      </block>
+    </view>
+
+    <view class="quick-stats">
+      <view class="quick-stat" bindtap="scrollToFavorites">
+        <view class="quick-stat__number">{{isLoggedIn ? favorites.length : 0}}</view>
+        <view class="quick-stat__label">我的收藏</view>
+      </view>
+      <view class="quick-stat">
+        <view class="quick-stat__number">{{isLoggedIn ? likeTotal : 0}}</view>
+        <view class="quick-stat__label">我的点赞</view>
+      </view>
+      <view class="quick-stat">
+        <view class="quick-stat__number">{{isLoggedIn ? commentTotal : 0}}</view>
+        <view class="quick-stat__label">我的评论</view>
+      </view>
+      <view class="quick-stat" data-category="推荐" bindtap="goToHome">
+        <view class="quick-stat__number">{{allNewsCount}}</view>
+        <view class="quick-stat__label">新闻资讯</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="mine-content">
+    <view class="study-banner" data-id="zsjhx" bindtap="openService">
+      <view class="study-banner__eyebrow">牢记嘱托</view>
+      <view class="study-banner__title">胸怀蓝色梦想 · 堪当时代重任</view>
+      <view class="study-banner__subtitle">学习习近平总书记给中国海洋大学全体师生的回信</view>
+      <view class="study-banner__button">进入专题 ›</view>
+    </view>
+
+    <view class="panel">
+      <view class="panel-heading">
+        <view>
+          <view class="panel-heading__title">学习服务</view>
+          <view class="panel-heading__subtitle">精选新闻频道快捷入口</view>
+        </view>
+      </view>
+      <view class="service-grid">
+        <view wx:for="{{serviceItems}}" wx:key="title" class="service-item" data-id="{{item.id}}" data-category="{{item.category}}" bindtap="openService">
+          <view class="service-item__icon service-item__icon--{{item.tone}}">{{item.icon}}</view>
+          <view class="service-item__title">{{item.title}}</view>
+          <view class="service-item__subtitle">{{item.subtitle}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="panel reading-panel">
+      <view class="reading-mark">阅</view>
+      <view class="reading-copy">
+        <view class="reading-copy__title">海大学习空间</view>
+        <view class="reading-copy__subtitle">从权威资讯中了解学校发展</view>
+      </view>
+      <view class="reading-button" data-category="推荐" bindtap="goToHome">去学习</view>
+    </view>
+
+    <view id="favorites" class="panel favorites-panel">
+      <view class="panel-heading panel-heading--row">
+        <view>
+          <view class="panel-heading__title">我的收藏</view>
+          <view class="panel-heading__subtitle">稍后继续阅读</view>
+        </view>
+        <view class="favorite-count">{{isLoggedIn ? favorites.length : 0}}</view>
+      </view>
+
+      <block wx:if="{{isLoggedIn}}">
+        <view class="favorite-item" wx:for="{{favorites}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+          <image class="favorite-item__image" src="{{item.poster}}" mode="aspectFill"></image>
+          <view class="favorite-item__body">
+            <view class="favorite-item__title">{{item.title}}</view>
+            <view class="favorite-item__date">{{item.add_date}}</view>
+          </view>
+          <view class="favorite-item__arrow">›</view>
+        </view>
+        <view wx:if="{{favorites.length === 0}}" class="empty-box">
+          <view class="empty-box__icon">☆</view>
+          <view class="empty-box__title">还没有收藏新闻</view>
+          <view class="empty-box__hint">在新闻详情页点击收藏即可添加</view>
+          <view class="empty-box__button" data-category="推荐" bindtap="goToHome">去首页看看</view>
+        </view>
+      </block>
+      <view wx:else class="empty-box">
+        <view class="empty-box__icon">♡</view>
+        <view class="empty-box__title">登录后查看收藏</view>
+        <view class="empty-box__hint">你的收藏内容将保存在本机，登录后展示</view>
+        <button class="empty-box__login" bindtap="login">立即登录</button>
+      </view>
+    </view>
+
+    <view class="about-line">
+      <view>海大新闻 · 观海听涛</view>
+      <view class="about-line__version">校园资讯学习平台</view>
+    </view>
+  </view>
+
+  <view wx:if="{{showProfileSheet}}" class="sheet-mask" bindtap="cancelProfile">
+    <view class="profile-sheet" catchtap="noop">
+      <view class="profile-sheet__handle"></view>
+      <view class="profile-sheet__title">{{isLoggedIn ? '编辑资料' : '设置头像与昵称'}}</view>
+      <view class="profile-sheet__subtitle">登录后即可使用点赞、评论、收藏功能</view>
+
+      <button class="profile-sheet__avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+        <image class="profile-sheet__avatar" src="{{tempAvatar || '/images/my_blue.png'}}" mode="aspectFill"></image>
+        <view class="profile-sheet__avatar-tip">点击选择头像</view>
+      </button>
+
+      <input class="profile-sheet__input" type="nickname" placeholder="输入你的昵称" placeholder-class="profile-sheet__placeholder" value="{{tempName}}" bindinput="onNickInput" />
+
+      <view class="profile-sheet__actions">
+        <view class="profile-sheet__cancel" bindtap="cancelProfile">取消</view>
+        <view class="profile-sheet__confirm" bindtap="confirmProfile">{{isLoggedIn ? '保存' : '完成登录'}}</view>
+      </view>
+    </view>
+  </view>
+</view>

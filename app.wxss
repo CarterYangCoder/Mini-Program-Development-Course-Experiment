@@ -1,0 +1,76 @@
+page {
+  min-height: 100%;
+  background: #f5f7fa;
+  color: #1f2937;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  box-sizing: border-box;
+}
+
+view, text, image, button { box-sizing: border-box; }
+
+.news-card {
+  display: flex;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  border-radius: 20rpx;
+  background: #ffffff;
+  box-shadow: 0 8rpx 28rpx rgba(31, 41, 55, 0.07);
+}
+
+.news-card__image {
+  flex: none;
+  width: 220rpx;
+  height: 150rpx;
+  margin-right: 24rpx;
+  border-radius: 14rpx;
+  background: #e5e7eb;
+}
+
+.news-card__body {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.news-card__title {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 29rpx;
+  font-weight: 600;
+  line-height: 1.55;
+  color: #172033;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.news-card__date { margin-top: 14rpx; font-size: 24rpx; color: #8a94a6; }
+.empty-state { padding: 100rpx 30rpx; text-align: center; color: #8a94a6; font-size: 28rpx; }
+
+.particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.particle { position: absolute; bottom: -24rpx; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,.95), rgba(255,255,255,0) 70%); opacity: 0; animation: particle-rise 6s linear infinite; }
+.particles--gold .particle { background: radial-gradient(circle, rgba(242,196,110,.95), rgba(242,196,110,0) 70%); }
+.particles--tall .particle { animation-name: particle-rise-tall; }
+.particle:nth-child(1) { left: 6%; width: 14rpx; height: 14rpx; animation-duration: 5.4s; animation-delay: 0s; }
+.particle:nth-child(2) { left: 18%; width: 8rpx; height: 8rpx; animation-duration: 7.2s; animation-delay: 1.2s; }
+.particle:nth-child(3) { left: 32%; width: 18rpx; height: 18rpx; animation-duration: 6.4s; animation-delay: .6s; }
+.particle:nth-child(4) { left: 47%; width: 9rpx; height: 9rpx; animation-duration: 8s; animation-delay: 2.2s; }
+.particle:nth-child(5) { left: 60%; width: 13rpx; height: 13rpx; animation-duration: 5.8s; animation-delay: 1.6s; }
+.particle:nth-child(6) { left: 72%; width: 7rpx; height: 7rpx; animation-duration: 7.6s; animation-delay: .3s; }
+.particle:nth-child(7) { left: 84%; width: 16rpx; height: 16rpx; animation-duration: 6.8s; animation-delay: 2.8s; }
+.particle:nth-child(8) { left: 93%; width: 10rpx; height: 10rpx; animation-duration: 5s; animation-delay: 1s; }
+
+@keyframes particle-rise {
+  0% { opacity: 0; transform: translateY(0) translateX(0) scale(1); }
+  12% { opacity: .85; }
+  85% { opacity: .5; }
+  100% { opacity: 0; transform: translateY(-540rpx) translateX(-30rpx) scale(.35); }
+}
+
+@keyframes particle-rise-tall {
+  0% { opacity: 0; transform: translateY(0) translateX(0) scale(1); }
+  10% { opacity: .9; }
+  88% { opacity: .55; }
+  100% { opacity: 0; transform: translateY(-108vh) translateX(36rpx) scale(.4); }
+}

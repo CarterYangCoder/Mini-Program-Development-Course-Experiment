@@ -1,0 +1,97 @@
+<view class="page">
+  <view class="brand-header" style="padding-top: {{statusBarHeight + 14}}px;">
+    <view class="particles">
+      <view class="particle"></view><view class="particle"></view><view class="particle"></view><view class="particle"></view>
+      <view class="particle"></view><view class="particle"></view><view class="particle"></view><view class="particle"></view>
+    </view>
+    <view class="brand-row">
+      <view>
+        <view class="brand-name"><text class="brand-name__strong">海大</text>新闻</view>
+        <view class="brand-slogan">观海听涛 · 向海图强</view>
+      </view>
+      <view class="brand-badge">
+        <view class="brand-badge__number">{{allNews.length}}</view>
+        <view class="brand-badge__label">条资讯</view>
+      </view>
+    </view>
+
+    <view class="search-box" bindtap="goSearch">
+      <text class="search-box__icon">⌕</text>
+      <view class="search-box__input search-box__placeholder">搜索海大新闻</view>
+    </view>
+  </view>
+
+  <scroll-view class="channel-nav" scroll-x="true" enhanced="true" show-scrollbar="false">
+    <view class="channel-nav__inner">
+      <view wx:for="{{categoryTabs}}" wx:key="*this" class="channel-tab {{activeCategory === item ? 'channel-tab--active' : ''}}" data-category="{{item}}" bindtap="switchCategory">
+        {{item}}
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="content">
+    <swiper class="focus-swiper" indicator-dots="true" indicator-color="rgba(255,255,255,.45)" indicator-active-color="#ffffff" autoplay="true" circular="true" interval="5000" duration="500">
+      <swiper-item wx:for="{{featuredNews}}" wx:key="id">
+        <view class="focus-slide" data-id="{{item.id}}" bindtap="goToDetail">
+          <image class="focus-slide__image" src="{{item.poster}}" mode="aspectFill"></image>
+          <view class="focus-slide__shade"></view>
+          <view class="focus-slide__content">
+            <text class="focus-slide__tag">{{item.category}}</text>
+            <view class="focus-slide__title">{{item.title}}</view>
+            <view class="focus-slide__meta">{{item.source}} · {{item.add_date}}</view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+
+    <view class="ticker" bindtap="goToDetail" data-id="{{featuredNews[0].id}}">
+      <view class="ticker__label">热点</view>
+      <view class="ticker__text">{{featuredNews[0].title}}</view>
+      <view class="ticker__arrow">›</view>
+    </view>
+
+    <view id="news-section" class="section-title section-title--news">
+      <view>
+        <view class="section-title__main">{{activeCategory === '推荐' ? '今日推荐' : activeCategory}}</view>
+        <view class="section-title__sub">海大权威资讯，及时准确送达</view>
+      </view>
+      <view class="section-title__count">{{newsList.length}}篇</view>
+    </view>
+
+    <view class="news-list">
+      <view class="swipe-item" wx:for="{{newsList}}" wx:key="id">
+        <view class="swipe-item__action {{item.faved ? 'swipe-item__action--faved' : ''}}" data-index="{{index}}" bindtap="toggleSwipeFav">{{item.faved ? '取消收藏' : '☆ 收藏'}}</view>
+        <view class="news-card swipe-item__card" style="transform: translateX({{item.swipeX}}rpx);" data-id="{{item.id}}" data-index="{{index}}" bindtap="goToDetail" bindtouchstart="onTouchStart" bindtouchmove="onTouchMove" bindtouchend="onTouchEnd" bindtouchcancel="onTouchEnd">
+          <view class="news-card__body">
+            <view class="news-card__category">{{item.category}}</view>
+            <view class="news-card__title">{{item.title}}</view>
+            <view class="news-card__footer">
+              <text>{{item.source}}</text>
+              <text>{{item.add_date}}</text>
+            </view>
+          </view>
+          <image class="news-card__image" src="{{item.poster}}" mode="aspectFill"></image>
+        </view>
+      </view>
+      <view wx:if="{{newsList.length === 0}}" class="empty-state">
+        没有找到相关新闻，换个关键词试试
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{showSplash}}" class="splash {{splashLeaving ? 'splash--leaving' : ''}}" bindtap="hideSplash">
+    <image class="splash__image" src="/images/xi_hai_an.jpg" mode="aspectFill"></image>
+    <view class="splash__shade"></view>
+    <view class="particles particles--gold particles--tall">
+      <view class="particle"></view><view class="particle"></view><view class="particle"></view><view class="particle"></view>
+      <view class="particle"></view><view class="particle"></view><view class="particle"></view><view class="particle"></view>
+    </view>
+    <view class="splash__content">
+      <view class="splash__badge">中国海洋大学 · 西海岸校区</view>
+      <view class="splash__title"><text class="splash__title-strong">海大</text>新闻</view>
+      <view class="splash__rule"><view class="splash__rule-dot"></view></view>
+      <view class="splash__slogan">观海听涛 · 向海图强</view>
+    </view>
+    <view class="splash__skip">轻触进入 ›</view>
+  </view>
+</view>
