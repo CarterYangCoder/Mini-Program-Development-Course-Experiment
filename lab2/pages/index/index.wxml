@@ -1,0 +1,38 @@
+<navigation-bar title="个人名片" back="{{false}}"></navigation-bar>
+<scroll-view class="scrollarea" scroll-y>
+  <image class="intro-image" mode="widthFix" src="../../image/intro.png"></image>
+
+  <view class="content">
+  <view class="header">杨思睿个人介绍</view>
+
+  <view class="intro-text">中国海洋大学保密技术专业在读</view>
+  <view class="intro-text">一个平平无奇的“守密人”</view>
+
+  <view class="card-list">
+    <view class="card">
+      <text class="card-title">日常泄密</text>
+      <text class="card-text">学的是保密技术，但自己最常泄密的时刻是——“我这周一定要早睡”</text>
+    </view>
+    <view class="card">
+      <text class="card-title">密码学实践</text>
+      <text class="card-text">修过密码学，会算 RSA，但经常忘记自己食堂饭卡密码</text>
+    </view>
+    <view class="card">
+      <text class="card-title">代码日常</text>
+      <text class="card-text">敲过一点 Python 和 C++，代码能跑就是胜利，报错全靠重启</text>
+    </view>
+    <view class="card">
+      <text class="card-title">CTF 经历</text>
+      <text class="card-text">打过几次 CTF，主要贡献是给队友递水喊加油</text>
+    </view>
+    <view class="card">
+      <text class="card-title">兴趣研究</text>
+      <text class="card-text">兴趣是研究“怎么把文件藏得更深”，结果最常找不到的是自己的实验报告</text>
+    </view>
+    <view class="card motto">
+      <text class="card-title">座右铭</text>
+      <text class="card-text">保密无小事，摸鱼要低调</text>
+    </view>
+  </view>
+  </view>
+</scroll-view>

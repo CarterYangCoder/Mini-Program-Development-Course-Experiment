@@ -1,0 +1,80 @@
+/**index.wxss**/
+page {
+  background-color: #f7f8fa;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.scrollarea {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* 图片宽度铺满 */
+.intro-image {
+  width: 100%;
+  display: block;
+}
+
+/* 内容区 */
+.content {
+  padding: 32rpx;
+}
+
+/* 大标题 */
+.header {
+  text-align: center;
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin-bottom: 24rpx;
+}
+
+/* 问题加粗 */
+.section-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin-bottom: 12rpx;
+}
+
+/* 介绍正文 */
+.intro-text {
+  text-align: center;
+  font-size: 30rpx;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 24rpx;
+}
+
+/* 卡片列表 */
+.card-list {
+  margin-top: 8rpx;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  font-size: 30rpx;
+  color: #444;
+  line-height: 1.7;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.card-title {
+  font-weight: bold;
+  color: #222;
+}
+
+.card-text {
+  color: #555;
+}
+
+/* 座右铭特殊样式 */
+.motto {
+  text-align: center;
+  background-color: #eef6ff;
+}
