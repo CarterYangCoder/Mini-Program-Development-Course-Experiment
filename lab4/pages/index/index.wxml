@@ -1,0 +1,44 @@
+<view class='page'>
+  <view class='player-bar'>
+    <image class='avatar' src='{{user.avatarUrl}}' mode='aspectFill'></image>
+    <view class='player-info'>
+      <view class='hello'>你好，{{user.nickname}}</view>
+      <view class='online'><text class='online-dot'></text>在线挑战中</view>
+    </view>
+    <view class='bar-btn history-btn' hover-class='bar-hover' bindtap='openHistory'>历史</view>
+    <view class='bar-btn logout-btn' hover-class='bar-hover' bindtap='logout'>退出</view>
+  </view>
+
+  <!-- 顶部标题区 -->
+  <view class='hero'>
+    <image class='h-ic bird' src='/images/icons/bird.png' mode='aspectFit'></image>
+    <image class='h-ic box' src='/images/icons/box.png' mode='aspectFit'></image>
+    <view class='hero-title'>推箱子</view>
+    <view class='hero-sub'>经典益智小游戏 · 把 TNT 箱子推到小猪身上即可过关</view>
+    <view class='hero-stats'>
+      <view><text>{{completedCount}}</text>/4 已通关</view>
+      <view class='divider'></view>
+      <view><text>{{totalGames}}</text> 场记录</view>
+    </view>
+  </view>
+
+  <!-- 关卡列表 -->
+  <view class='level-box'>
+    <view
+      class='box'
+      wx:for='{{levels}}'
+      wx:key='name'
+      bindtap='chooseLevel'
+      data-level='{{index}}'
+      hover-class='box-hover'
+      hover-stay-time='80'
+    >
+      <image src='{{item.img}}' mode='aspectFit'></image>
+      <view class='level-name'>{{item.name}}</view>
+      <view class='level-best'>{{item.best > 0 ? '最佳 ' + item.best + ' 步' : '未挑战'}}</view>
+      <view class='play-tag'>{{item.best > 0 ? '再次挑战' : '开始挑战'}} →</view>
+    </view>
+  </view>
+
+  <view class='tip'>点击关卡开始游戏 · 游戏内支持滑动棋盘或方向键操作</view>
+</view>

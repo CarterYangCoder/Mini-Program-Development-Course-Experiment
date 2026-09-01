@@ -1,0 +1,82 @@
+<view class='stage'>
+  <!-- 背景装饰 -->
+  <view class='bg-circle c1'></view>
+  <view class='bg-circle c2'></view>
+  <view class='bg-circle c3'></view>
+  <view class='dot d1'></view>
+  <view class='dot d2'></view>
+  <view class='dot d3'></view>
+  <view class='dot d4'></view>
+  <view class='dot d5'></view>
+  <view class='dot d6'></view>
+
+  <!-- 漂浮的游戏角色 -->
+  <image class='float-ic bird' src='/images/icons/bird.png' mode='aspectFit'></image>
+  <image class='float-ic box' src='/images/icons/box.png' mode='aspectFit'></image>
+  <image class='float-ic pig' src='/images/icons/pig.png' mode='aspectFit'></image>
+
+  <!-- 游戏标题 -->
+  <view class='title-wrap'>
+    <view class='game-title'>推箱子</view>
+    <view class='game-sub'>BOX PUZZLE · 经典推箱挑战</view>
+  </view>
+
+  <!-- 加载进度 -->
+  <view class='loading-wrap {{user ? "compact" : ""}}'>
+    <view class='loading-track'>
+      <view class='loading-bar' style='width: {{progress}}%;'></view>
+    </view>
+    <view class='loading-text'>{{ready ? '加载完成，准备出发' : '游戏资源加载中 ' + progress + '%'}}</view>
+  </view>
+
+  <!-- 登录卡片 -->
+  <view class='login-card' wx:if='{{ready && !user}}'>
+    <view class='login-head'>创建你的玩家身份</view>
+    <view class='login-sub'>登录后将为你保存关卡成绩和游戏历史</view>
+    <view class='identity-row'>
+      <button
+        class='avatar-picker'
+        style='width: 96rpx; min-width: 96rpx; max-width: 96rpx; height: 96rpx; margin: 0 22rpx 0 0; padding: 0;'
+        open-type='chooseAvatar'
+        bindchooseavatar='onChooseAvatar'
+      >
+        <image src='{{avatarUrl}}' mode='aspectFill'></image>
+        <view class='avatar-edit'>+</view>
+      </button>
+      <input
+        class='nickname-input'
+        type='nickname'
+        maxlength='12'
+        confirm-type='done'
+        placeholder='输入游戏昵称'
+        value='{{nickname}}'
+        bindinput='onNicknameInput'
+        bindblur='onNicknameInput'
+        bindconfirm='onNicknameInput'
+      />
+    </view>
+    <view class='login-error' wx:if='{{loginError}}'>{{loginError}}</view>
+    <view class='login-btn' hover-class='login-hover' bindtap='login'>登录并继续</view>
+  </view>
+
+  <!-- 已登录玩家 -->
+  <view class='player-ready' wx:if='{{ready && user}}'>
+    <image src='{{user.avatarUrl}}' mode='aspectFill'></image>
+    <view class='player-copy'>
+      <view class='welcome'>欢迎回来，{{user.nickname}}</view>
+      <view class='save-tip'>你的对局记录将自动保存</view>
+    </view>
+    <view class='online-dot'></view>
+  </view>
+
+  <!-- 进入游戏按钮 -->
+  <view
+    wx:if='{{user}}'
+    class='enter-btn {{ready ? "ready" : ""}} {{entering ? "go" : ""}}'
+    hover-class='{{ready ? "enter-hover" : ""}}'
+    hover-stay-time='80'
+    bindtap='enterGame'
+  >开始挑战</view>
+
+  <view class='foot'>移动开发 · 实验四作品</view>
+</view>

@@ -1,0 +1,64 @@
+<view class='page'>
+  <view class='player-strip'>
+    <image src='{{user.avatarUrl}}' mode='aspectFill'></image>
+    <view class='strip-copy'>
+      <view class='strip-name'>{{user.nickname}}</view>
+      <view class='strip-status'><text></text>正在挑战第 {{level}} 关</view>
+    </view>
+    <view class='room-tag'>PLAYER ONLINE</view>
+  </view>
+
+  <!-- 顶部信息栏 -->
+  <view class='head'>
+    <view>
+      <view class='level-kicker'>CURRENT LEVEL</view>
+      <view class='level-name'>第 {{level}} 关</view>
+    </view>
+    <view class='chips'>
+      <view class='chip'>步数 {{steps}}</view>
+      <view class='chip best'>最佳 {{best > 0 ? best + ' 步' : '--'}}</view>
+    </view>
+  </view>
+
+  <!-- 游戏画布 -->
+  <view class='canvas-card'>
+    <view class='board-top'>
+      <view class='mission'>任务进度</view>
+      <view class='goal-count'>{{goalsDone}} / {{goalsTotal}} 箱已归位</view>
+    </view>
+    <view class='progress-track'><view class='progress-fill' style='width: {{goalsTotal ? goalsDone * 100 / goalsTotal : 0}}%;'></view></view>
+    <canvas
+      type='2d'
+      id='myCanvas'
+      style='width: {{canvasSize}}px; height: {{canvasSize}}px;'
+      bindtouchstart='touchStart'
+      bindtouchend='touchEnd'
+    ></canvas>
+  </view>
+
+  <view class='hint'><text class='gesture'>↔</text> 滑动棋盘移动，也可以使用下方方向键</view>
+
+  <!-- 方向键 -->
+  <view class='btn-box'>
+    <view class='control-title'>移动控制</view>
+    <view class='pad-row'>
+      <view class='pad' hover-class='pad-hover' hover-stay-time='60' bindtap='up'><text>↑</text></view>
+    </view>
+    <view class='pad-row'>
+      <view class='pad' hover-class='pad-hover' hover-stay-time='60' bindtap='left'><text>←</text></view>
+      <view class='pad center' hover-class='pad-hover' hover-stay-time='60' bindtap='down'><text>↓</text></view>
+      <view class='pad' hover-class='pad-hover' hover-stay-time='60' bindtap='right'><text>→</text></view>
+    </view>
+  </view>
+
+  <!-- 功能按钮 -->
+  <view class='action-row'>
+    <view
+      class='action undo {{canUndo ? "" : "disabled"}}'
+      hover-class='{{canUndo ? "action-hover" : ""}}'
+      hover-stay-time='60'
+      bindtap='undoMove'
+    >撤销</view>
+    <view class='action restart' hover-class='action-hover' hover-stay-time='60' bindtap='restartGame'>重新开始</view>
+  </view>
+</view>

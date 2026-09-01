@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/start/start",
+    "pages/index/index",
+    "pages/game/game",
+    "pages/history/history"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#4A6CF7",
+    "navigationBarTitleText": "推箱子游戏",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F3F5F9",
+    "backgroundTextStyle": "dark"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

@@ -1,0 +1,156 @@
+/* 选关页样式 */
+.page {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 32rpx;
+}
+
+.player-bar { margin-bottom: 24rpx; padding: 18rpx 20rpx; display: flex; align-items: center; border-radius: 28rpx; background: #fff; box-shadow: 0 8rpx 24rpx rgba(31,45,61,.07); }
+.avatar { width: 82rpx; height: 82rpx; border-radius: 50%; background: #EEF1F8; }
+.player-info { flex: 1; margin-left: 18rpx; }
+.hello { font-size: 28rpx; font-weight: 700; color: #242938; }
+.online { margin-top: 6rpx; color: #8C96A8; font-size: 20rpx; }
+.online-dot { display: inline-block; width: 12rpx; height: 12rpx; margin-right: 8rpx; border-radius: 50%; background: #3FCB89; }
+.bar-btn { margin-left: 12rpx; padding: 13rpx 20rpx; border-radius: 16rpx; font-size: 22rpx; }
+.history-btn { color: #4A6CF7; background: #EDF1FF; font-weight: 600; }
+.logout-btn { color: #9DA5B3; background: #F5F6F8; }
+.bar-hover { transform: scale(.95); opacity: .85; }
+
+/* 顶部标题区 */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 52rpx 44rpx;
+  border-radius: 32rpx;
+  background: linear-gradient(135deg, #5F83FF, #7A5CFF);
+  color: #fff;
+  box-shadow: 0 14rpx 34rpx rgba(90, 110, 250, 0.35);
+  animation: heroIn 0.55s cubic-bezier(0.2, 1.2, 0.4, 1) both;
+}
+
+/* 标题区漂浮角色 */
+.h-ic {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 10rpx 12rpx rgba(0, 0, 0, 0.22));
+  animation: floaty 3s ease-in-out infinite;
+}
+
+.h-ic.bird {
+  width: 92rpx;
+  height: 92rpx;
+  right: 40rpx;
+  top: 34rpx;
+}
+
+.h-ic.box {
+  width: 72rpx;
+  height: 72rpx;
+  right: 40rpx;
+  bottom: 24rpx;
+  opacity: 0.88;
+  animation-delay: 0.9s;
+}
+
+.hero-title {
+  position: relative;
+  z-index: 2;
+  font-size: 58rpx;
+  font-weight: 700;
+  letter-spacing: 6rpx;
+}
+
+.hero-sub {
+  position: relative;
+  z-index: 2;
+  margin-top: 18rpx;
+  font-size: 24rpx;
+  opacity: 0.88;
+  line-height: 1.6;
+}
+
+.hero-stats { position: relative; z-index: 2; margin-top: 28rpx; padding-right: 96rpx; display: flex; align-items: center; color: rgba(255,255,255,.72); font-size: 22rpx; }
+.hero-stats text { color: #fff; font-size: 30rpx; font-weight: 700; }
+.hero-stats .divider { width: 1rpx; height: 28rpx; margin: 0 22rpx; background: rgba(255,255,255,.25); }
+
+/* 关卡列表区域 */
+.level-box {
+  margin-top: 32rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* 单个关卡卡片 */
+.box {
+  width: 48.6%;
+  margin-bottom: 24rpx;
+  padding: 24rpx;
+  box-sizing: border-box;
+  border-radius: 26rpx;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 8rpx 20rpx rgba(31, 45, 61, 0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  animation: cardIn 0.45s ease both;
+}
+
+/* 卡片错落入场 */
+.box:nth-child(1) { animation-delay: 0.08s; }
+.box:nth-child(2) { animation-delay: 0.16s; }
+.box:nth-child(3) { animation-delay: 0.24s; }
+.box:nth-child(4) { animation-delay: 0.32s; }
+
+.box-hover {
+  transform: scale(0.97);
+  box-shadow: 0 2rpx 8rpx rgba(31, 45, 61, 0.1);
+}
+
+/* 选关图片 */
+.box image {
+  width: 100%;
+  height: 260rpx;
+  border-radius: 16rpx;
+  background: #EDF0F7;
+}
+
+.level-name {
+  margin-top: 16rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.level-best {
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: #9AA3B2;
+}
+.play-tag { margin-top: 14rpx; color: #4A6CF7; font-size: 22rpx; font-weight: 600; }
+
+/* 底部提示 */
+.tip {
+  margin-top: 12rpx;
+  text-align: center;
+  font-size: 22rpx;
+  color: #9AA3B2;
+  line-height: 1.6;
+}
+
+/* ============ 动画 ============ */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16rpx); }
+}
+
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(-36rpx) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(34rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,171 @@
+page { background: linear-gradient(180deg, #EAF0FF 0, #F5F7FB 360rpx, #F3F5F9 100%); }
+
+/* 游戏页样式 */
+.page {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 24rpx 32rpx 56rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.player-strip { width: 100%; margin-bottom: 24rpx; padding: 16rpx 20rpx; box-sizing: border-box; display: flex; align-items: center; border: 1rpx solid rgba(74,108,247,.1); border-radius: 24rpx; background: rgba(255,255,255,.82); box-shadow: 0 8rpx 24rpx rgba(44,67,130,.07); }
+.player-strip image { width: 70rpx; height: 70rpx; border-radius: 50%; background: #EEF1F7; }
+.strip-copy { flex: 1; margin-left: 16rpx; }
+.strip-name { color: #252A38; font-size: 26rpx; font-weight: 700; }
+.strip-status { margin-top: 5rpx; color: #8B95A6; font-size: 19rpx; }
+.strip-status text { display: inline-block; width: 11rpx; height: 11rpx; margin-right: 7rpx; border-radius: 50%; background: #3ED08B; }
+.room-tag { padding: 10rpx 14rpx; border-radius: 12rpx; color: #6D7CAD; background: #EEF2FF; font-size: 16rpx; font-weight: 700; letter-spacing: 1rpx; }
+
+/* 顶部信息栏 */
+.head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation: rise 0.4s ease both;
+}
+
+.level-name {
+  font-size: 40rpx;
+  font-weight: 700;
+}
+.level-kicker { margin-bottom: 4rpx; color: #8D98AC; font-size: 17rpx; font-weight: 700; letter-spacing: 2rpx; }
+
+.chips {
+  display: flex;
+}
+
+.chip {
+  margin-left: 16rpx;
+  padding: 10rpx 22rpx;
+  border-radius: 999rpx;
+  background: #fff;
+  font-size: 24rpx;
+  color: #5B6473;
+  box-shadow: 0 4rpx 12rpx rgba(31, 45, 61, 0.06);
+}
+
+.chip.best {
+  color: #4A6CF7;
+  font-weight: 600;
+}
+
+/* 游戏画布卡片 */
+.canvas-card {
+  margin-top: 28rpx;
+  padding: 20rpx;
+  background: #fff;
+  border-radius: 28rpx;
+  box-shadow: 0 12rpx 32rpx rgba(31, 45, 61, 0.08);
+  animation: rise 0.45s 0.06s ease both;
+}
+.board-top { margin: 0 4rpx 13rpx; display: flex; justify-content: space-between; align-items: center; }
+.mission { color: #3A4151; font-size: 23rpx; font-weight: 700; }
+.goal-count { color: #7D8798; font-size: 20rpx; }
+.progress-track { height: 8rpx; margin: 0 4rpx 18rpx; overflow: hidden; border-radius: 99rpx; background: #E9EDF5; }
+.progress-fill { height: 100%; border-radius: 99rpx; background: linear-gradient(90deg,#4A6CF7,#7E5CFF); transition: width .2s ease; }
+
+canvas {
+  display: block;
+  border-radius: 16rpx;
+  background: #DDE3EE;
+}
+
+/* 操作提示 */
+.hint {
+  margin-top: 22rpx;
+  font-size: 22rpx;
+  color: #9AA3B2;
+  text-align: center;
+  line-height: 1.6;
+}
+.gesture { color: #4A6CF7; font-size: 28rpx; font-weight: 700; }
+
+/* 方向键按钮整体区域 */
+.btn-box {
+  margin-top: 26rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: rise 0.45s 0.12s ease both;
+}
+.control-title { margin-bottom: 6rpx; color: #8791A3; font-size: 19rpx; font-weight: 600; letter-spacing: 4rpx; }
+
+/* 方向键按钮每一行 */
+.pad-row {
+  display: flex;
+}
+
+/* 单个方向键按钮 */
+.pad {
+  width: 104rpx;
+  height: 104rpx;
+  margin: 8rpx;
+  border: 1rpx solid rgba(74,108,247,.12);
+  border-radius: 26rpx;
+  background: rgba(255,255,255,.95);
+  color: #fff;
+  font-size: 44rpx;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 18rpx rgba(44,65,126,.1);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+.pad text { width: 58rpx; height: 58rpx; border-radius: 18rpx; color: #fff; background: linear-gradient(145deg,#6C89FF,#4A6CF7); font-size: 36rpx; line-height: 55rpx; text-align: center; }
+.pad.center text { background: linear-gradient(145deg,#806BFF,#674EEE); }
+
+.pad-hover {
+  transform: translateY(4rpx) scale(0.96);
+  box-shadow: 0 3rpx 8rpx rgba(44,65,126,.1);
+  background: #F8F9FF;
+}
+
+/* 功能按钮区域 */
+.action-row {
+  margin-top: 38rpx;
+  display: flex;
+  align-items: center;
+  animation: rise 0.45s 0.18s ease both;
+}
+
+.action {
+  min-width: 200rpx;
+  margin: 0 16rpx;
+  padding: 20rpx 44rpx;
+  border-radius: 999rpx;
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: 600;
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+
+.action.undo {
+  background: #fff;
+  color: #4A6CF7;
+  box-shadow: 0 6rpx 16rpx rgba(31, 45, 61, 0.08);
+}
+
+.action.undo.disabled {
+  color: #B9C0CC;
+}
+
+.action.restart {
+  background: linear-gradient(135deg, #FF9F43, #FF7A45);
+  color: #fff;
+  box-shadow: 0 10rpx 20rpx rgba(255, 138, 69, 0.35);
+}
+
+.action-hover {
+  transform: scale(0.95);
+  opacity: 0.9;
+}
+
+/* ============ 动画 ============ */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(28rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
