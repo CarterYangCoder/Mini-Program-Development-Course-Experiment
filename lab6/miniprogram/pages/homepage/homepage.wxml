@@ -1,0 +1,76 @@
+<view class="profile-page">
+  <view wx:if="{{isMine && !loggedIn}}" class="login-panel">
+    <view class="login-symbol"><image src="/images/icons/avatar.png" mode="aspectFill" /></view>
+    <text class="login-title">登录光影拾集</text>
+    <text class="login-note">登录后即可发布作品、查看收藏并管理个人主页</text>
+    <button class="login-button" loading="{{loggingIn}}" disabled="{{loggingIn}}" bindtap="login">一键登录</button>
+  </view>
+
+  <block wx:else>
+    <view class="profile-hero">
+      <view class="profile-cover">
+        <view class="cover-mark">LIGHT &amp; FRAME</view>
+      </view>
+      <view class="profile-main" wx:if="{{profile}}">
+        <image class="profile-avatar" src="{{profile.avatarUrl || '/images/icons/avatar.png'}}" mode="aspectFill" />
+        <view class="profile-action-row">
+          <view wx:if="{{isMine}}" class="profile-action primary-action" bindtap="goToAdd">发布作品</view>
+          <view wx:if="{{isMine}}" class="profile-action secondary-action" bindtap="logout">退出登录</view>
+          <view wx:else class="profile-action {{followed ? 'secondary-action' : 'primary-action'}}" bindtap="toggleFollow">{{followed ? '已关注' : '关注'}}</view>
+        </view>
+        <text class="profile-name">{{profile.nickName || '光影创作者'}}</text>
+        <text class="profile-bio">记录所见，也收藏平凡日子里的光</text>
+        <view class="profile-stats">
+          <view class="stat-item"><text class="stat-number">{{photoList.length}}</text><text class="stat-label">作品</text></view>
+          <view class="stat-divider" wx:if="{{isMine}}"></view>
+          <view class="stat-item" wx:if="{{isMine}}"><text class="stat-number">{{favoriteCount}}</text><text class="stat-label">收藏</text></view>
+        </view>
+      </view>
+    </view>
+
+    <view class="profile-tabs" wx:if="{{isMine}}">
+      <view class="profile-tab {{activeSection === 'works' ? 'profile-tab-active' : ''}}" data-section="works" bindtap="selectSection">我的作品</view>
+      <view class="profile-tab {{activeSection === 'favorites' ? 'profile-tab-active' : ''}}" data-section="favorites" bindtap="selectSection">我的收藏</view>
+    </view>
+    <view class="profile-tabs single-tab" wx:else>
+      <view class="profile-tab profile-tab-active">作品</view>
+    </view>
+
+    <view wx:if="{{loading}}" class="state-block">
+      <view class="loading-ring"></view>
+      <text>正在整理作品</text>
+    </view>
+
+    <view wx:elif="{{activeSection === 'works' && !photoList.length}}" class="state-block empty-state">
+      <text class="state-title">{{isMine ? '还没有发布作品' : '这位创作者还没有公开作品'}}</text>
+      <text class="state-copy" wx:if="{{isMine}}">去发布第一张照片，开始你的作品集</text>
+      <view class="empty-action" wx:if="{{isMine}}" bindtap="goToAdd">发布作品</view>
+    </view>
+
+    <view wx:elif="{{activeSection === 'favorites' && !favoritePhotos.length}}" class="state-block empty-state">
+      <text class="state-title">还没有收藏作品</text>
+      <text class="state-copy">在详情页点击收藏，喜欢的画面会出现在这里</text>
+    </view>
+
+    <view class="profile-feed" wx:else>
+      <block wx:if="{{activeSection === 'works'}}">
+        <navigator class="work-card" wx:for="{{photoList}}" wx:key="_id" url="/pages/detail/detail?id={{item._id}}" hover-class="card-hover">
+          <image class="work-photo" src="{{item.photoUrl}}" mode="widthFix" lazy-load="true" />
+          <view class="work-info">
+            <view class="work-copy"><text class="work-title">{{item.title || '未命名作品'}}</text><text class="work-category">{{item.category || '光影'}}</text></view>
+            <text class="work-date">{{item.addDate}}</text>
+          </view>
+        </navigator>
+      </block>
+      <block wx:else>
+        <navigator class="work-card" wx:for="{{favoritePhotos}}" wx:key="_id" url="/pages/detail/detail?id={{item._id}}" hover-class="card-hover">
+          <image class="work-photo" src="{{item.photoUrl}}" mode="widthFix" lazy-load="true" />
+          <view class="work-info">
+            <view class="work-copy"><text class="work-title">{{item.title || '未命名作品'}}</text><text class="work-category">{{item.nickName || '光影创作者'}} · {{item.category || '光影'}}</text></view>
+            <text class="work-date">{{item.addDate}}</text>
+          </view>
+        </navigator>
+      </block>
+    </view>
+  </block>
+</view>

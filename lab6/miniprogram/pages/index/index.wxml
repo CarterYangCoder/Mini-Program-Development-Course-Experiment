@@ -1,0 +1,163 @@
+<view class="page-shell">
+  <view class="feed-header">
+    <view class="header-side" aria-hidden="true"></view>
+    <view class="feed-tabs" role="tablist" aria-label="作品信息流">
+      <view class="feed-tab {{activeFeed === '推荐' ? 'feed-tab-active' : ''}}" role="tab" aria-selected="{{activeFeed === '推荐'}}" bindtap="showRecommended">推荐</view>
+      <view class="feed-tab {{activeFeed === '关注' ? 'feed-tab-active' : ''}}" role="tab" aria-selected="{{activeFeed === '关注'}}" bindtap="viewFollowing">关注</view>
+    </view>
+    <view class="publish-entry" role="button" aria-label="发布作品" bindtap="goToAdd" hover-class="tap-hover">
+      <view class="publish-entry-icon" aria-hidden="true"></view>
+      <text>发布</text>
+    </view>
+  </view>
+
+  <view class="search-panel">
+    <view class="search-icon" aria-hidden="true"></view>
+    <input
+      class="search-input"
+      type="text"
+      placeholder="搜索作品、作者或主题"
+      placeholder-class="search-placeholder"
+      value="{{searchKeyword}}"
+      bindinput="onSearchInput"
+      confirm-type="search"
+    />
+  </view>
+
+  <scroll-view class="tag-scroll" scroll-x="true" enable-flex="true" show-scrollbar="false">
+    <view class="tag-list">
+      <view
+        wx:for="{{tags}}"
+        wx:key="*this"
+        class="tag-item {{activeTag === item ? 'tag-item-active' : ''}}"
+        data-tag="{{item}}"
+        bindtap="selectTag"
+        hover-class="tag-hover"
+      >{{item === '全部' ? '推荐' : item}}</view>
+    </view>
+  </scroll-view>
+
+  <view class="login-strip" wx:if="{{!loggedIn}}">
+    <image class="login-avatar" src="/images/icons/avatar.png" mode="aspectFill" />
+    <view class="login-content">
+      <text class="login-hint">登录后可发布和管理作品</text>
+      <text class="login-subtitle">使用当前微信身份一键登录</text>
+    </view>
+    <button class="login-button" loading="{{loggingIn}}" disabled="{{loggingIn}}" aria-label="登录" bindtap="login" hover-class="button-hover">登录</button>
+  </view>
+
+  <view wx:if="{{loading}}" class="state-block">
+    <view class="loading-ring" aria-hidden="true"></view>
+    <text>正在收集光影作品</text>
+  </view>
+
+  <view wx:elif="{{!filteredPhotos.length}}" class="state-block empty-state">
+    <view class="empty-picture" aria-hidden="true"></view>
+    <text class="state-title">{{activeFeed === '关注' ? '关注的创作者还没有新作品' : (searchKeyword || activeTag !== '全部' ? '暂时没有匹配的作品' : emptyText)}}</text>
+    <text class="state-note">{{activeFeed === '关注' ? '去作品详情或作者主页关注喜欢的创作者' : '换个关键词或主题看看'}}</text>
+  </view>
+
+  <view class="feed-list" wx:else>
+    <view class="feed-card" wx:for="{{filteredPhotos}}" wx:key="_id">
+      <view class="card-author-row">
+        <navigator class="author-link" url="/pages/homepage/homepage?id={{item._openid}}" hover-class="tap-hover">
+          <image class="author-avatar" src="{{item.avatarUrl || '/images/icons/avatar.png'}}" mode="aspectFill" />
+          <view class="author-copy">
+            <text class="author-name">{{item.nickName || '光影创作者'}}</text>
+            <view class="author-meta">
+              <text>{{item.addDate || '最近发布'}}</text>
+              <text class="meta-dot">·</text>
+              <text class="category-label">{{item.category || '日常'}}</text>
+            </view>
+          </view>
+        </navigator>
+      </view>
+
+      <navigator class="work-copy" url="/pages/detail/detail?id={{item._id}}" hover-class="tap-hover">
+        <text class="work-title">{{item.title || '未命名作品'}}</text>
+        <text wx:if="{{item.description}}" class="work-description">{{item.description}}</text>
+      </navigator>
+
+      <navigator class="photo-link" url="/pages/detail/detail?id={{item._id}}" hover-class="photo-hover">
+        <image class="work-image" src="{{item.photoUrl}}" mode="widthFix" lazy-load="true" />
+      </navigator>
+
+      <view class="card-actions">
+        <button
+          class="action-button {{item.isLiked ? 'action-button-active' : ''}}"
+          data-id="{{item._id}}"
+          catchtap="toggleLike"
+          hover-class="action-hover"
+          aria-label="{{item.isLiked ? '取消点赞' : '点赞'}}"
+        >
+          <image class="action-icon" src="{{item.isLiked ? '/images/community/heart-filled.svg' : '/images/community/heart.svg'}}" />
+          <text>赞</text>
+          <text wx:if="{{item.displayLikeCount}}" class="action-count">{{item.displayLikeCount}}</text>
+        </button>
+        <button
+          class="action-button {{item.isFavorite ? 'action-button-active' : ''}}"
+          data-id="{{item._id}}"
+          catchtap="toggleFavorite"
+          hover-class="action-hover"
+          aria-label="{{item.isFavorite ? '取消收藏' : '收藏'}}"
+        >
+          <image class="action-icon" src="{{item.isFavorite ? '/images/community/bookmark-filled.svg' : '/images/community/bookmark.svg'}}" />
+          <text>{{item.isFavorite ? '已收藏' : '收藏'}}</text>
+        </button>
+        <button
+          class="action-button"
+          open-type="share"
+          data-id="{{item._id}}"
+          hover-class="action-hover"
+          aria-label="分享作品"
+        >
+          <image class="action-icon" src="/images/community/share.svg" />
+          <text>分享</text>
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom-safe-space"></view>
+  <view class="bottom-nav">
+    <view class="nav-item nav-item-active" aria-current="page">
+      <image class="nav-icon" src="/images/community/home-filled.svg" />
+      <text>发现</text>
+    </view>
+    <view class="nav-center-space" aria-hidden="true"></view>
+    <view class="nav-item" bindtap="goToMyProfile" hover-class="nav-hover">
+      <image class="nav-icon" src="/images/community/user.svg" />
+      <text>我的</text>
+    </view>
+  </view>
+
+  <view class="floating-publish" role="button" bindtap="goToAdd" hover-class="floating-hover" aria-label="发布作品">
+    <view class="floating-plus" aria-hidden="true"></view>
+  </view>
+
+  <view class="profile-setup-mask" wx:if="{{showProfileSetup}}" catchtouchmove="noop">
+    <view class="profile-setup-dialog">
+      <text class="profile-setup-title">微信登录</text>
+      <text class="profile-setup-subtitle">使用微信头像和昵称完成登录</text>
+      <button class="profile-setup-avatar" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar" aria-label="选择微信头像">
+        <image wx:if="{{setupAvatar}}" class="profile-setup-avatar-image" src="{{setupAvatar}}" mode="aspectFill" />
+        <view wx:else class="profile-setup-avatar-placeholder">
+          <image class="profile-setup-avatar-icon" src="/images/icons/avatar.png" mode="aspectFill" />
+          <text class="profile-setup-avatar-hint">选择头像</text>
+        </view>
+      </button>
+      <input
+        class="profile-setup-input"
+        type="nickname"
+        placeholder="点击填写微信昵称"
+        placeholder-class="nickname-placeholder"
+        value="{{setupNickName}}"
+        bindinput="onNickNameInput"
+      />
+      <view class="profile-setup-actions">
+        <button class="profile-setup-cancel" bindtap="cancelProfileSetup" disabled="{{savingProfile}}" hover-class="button-hover">取消</button>
+        <button class="profile-setup-confirm" loading="{{savingProfile}}" disabled="{{savingProfile}}" bindtap="confirmProfileSetup" hover-class="button-hover">完成登录</button>
+      </view>
+    </view>
+  </view>
+</view>

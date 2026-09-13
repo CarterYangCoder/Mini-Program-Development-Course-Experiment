@@ -1,0 +1,99 @@
+<view class="publish-page">
+  <view class="page-intro">
+    <text class="intro-eyebrow">新作品</text>
+    <text class="intro-title">分享这一刻的光影</text>
+    <text class="intro-copy">一张照片，一段值得留下的故事</text>
+  </view>
+
+  <view class="section-head">
+    <text class="section-index">01</text>
+    <text class="section-title">选择图片</text>
+    <text class="section-note">支持相册与相机</text>
+  </view>
+
+  <view class="image-picker {{selectedPhotoPath ? 'image-picker-selected' : ''}}" bindtap="choosePhoto" hover-class="picker-hover">
+    <image wx:if="{{selectedPhotoPath}}" class="selected-image" src="{{selectedPhotoPath}}" mode="aspectFit" />
+    <view wx:else class="picker-empty">
+      <view class="picker-icon" aria-hidden="true"></view>
+      <text class="picker-title">添加一张作品图片</text>
+      <text class="picker-copy">建议使用清晰原图，发布后按原比例展示</text>
+    </view>
+  </view>
+
+  <view class="image-tools" wx:if="{{selectedPhotoPath}}">
+    <view class="tool-action" bindtap="choosePhoto">重新选择</view>
+    <view class="tool-action" catchtap="previewSelectedPhoto">全屏查看</view>
+    <view class="tool-action tool-danger" catchtap="removeSelectedPhoto">移除</view>
+  </view>
+
+  <view class="section-head form-head">
+    <text class="section-index">02</text>
+    <text class="section-title">作品信息</text>
+    <text class="section-note">让画面更有温度</text>
+  </view>
+
+  <view class="form-card">
+    <view class="field-block">
+      <view class="field-label-row">
+        <text class="field-label">标题</text>
+        <text class="field-count">{{title.length}}/30</text>
+      </view>
+      <input
+        class="title-input"
+        placeholder="给作品起一个名字"
+        placeholder-class="field-placeholder"
+        value="{{title}}"
+        data-field="title"
+        bindinput="onFieldInput"
+        maxlength="30"
+      />
+    </view>
+
+    <view class="field-block story-field">
+      <view class="field-label-row">
+        <text class="field-label">作品故事</text>
+        <text class="field-count">{{description.length}}/300</text>
+      </view>
+      <textarea
+        class="description-input"
+        placeholder="写下拍摄时的心情、地点或画面背后的故事"
+        placeholder-class="field-placeholder"
+        value="{{description}}"
+        data-field="description"
+        bindinput="onFieldInput"
+        maxlength="300"
+        fixed="true"
+      />
+    </view>
+
+    <view class="field-block category-field">
+      <text class="field-label">主题</text>
+      <view class="category-list">
+        <view
+          class="category {{selectedCategory === item ? 'category-active' : ''}}"
+          wx:for="{{categories}}"
+          wx:key="*this"
+          data-category="{{item}}"
+          bindtap="selectCategory"
+          hover-class="category-hover"
+        >{{item}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="publish-feedback feedback-success" wx:if="{{publishStatus === 'success'}}">
+    <view class="feedback-mark">✓</view>
+    <view><text class="feedback-title">发布成功</text><text class="feedback-copy">作品已经收录到你的个人主页</text></view>
+  </view>
+  <view class="publish-feedback feedback-error" wx:elif="{{publishStatus === 'error'}}">
+    <view class="feedback-mark">!</view>
+    <view><text class="feedback-title">暂未发布成功</text><text class="feedback-copy">{{uploadError}}</text></view>
+  </view>
+
+  <view class="publish-bottom-space"></view>
+  <view class="publish-footer">
+    <button class="publish-main" loading="{{uploading}}" disabled="{{uploading || !selectedPhotoPath}}" bindtap="upload" hover-class="publish-hover">
+      {{uploading ? '正在发布…' : (selectedPhotoPath ? '发布作品' : '请先选择图片')}}
+    </button>
+  </view>
+</view>

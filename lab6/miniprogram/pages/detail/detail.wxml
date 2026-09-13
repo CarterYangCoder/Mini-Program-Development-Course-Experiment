@@ -1,0 +1,66 @@
+<view class="detail-page">
+  <view wx:if="{{loading}}" class="detail-state">
+    <view class="loading-ring" aria-hidden="true"></view>
+    <text>正在打开作品</text>
+  </view>
+
+  <view wx:elif="{{!photo}}" class="detail-state empty-state">
+    <text class="state-title">作品暂时无法查看</text>
+    <text class="state-copy">请返回后重新进入</text>
+  </view>
+
+  <block wx:else>
+    <view class="photo-stage" bindtap="previewPhoto">
+      <image class="detail-photo" src="{{photo.photoUrl}}" mode="widthFix" />
+      <view class="preview-hint">点击查看原图</view>
+    </view>
+
+    <view class="detail-content">
+      <view class="topic-line">
+        <text class="topic-tag">{{photo.category || '光影'}}</text>
+        <text class="publish-date">{{photo.addDate || '最近发布'}}</text>
+      </view>
+      <text class="detail-title">{{photo.title || '未命名作品'}}</text>
+      <text wx:if="{{photo.description}}" class="detail-description">{{photo.description}}</text>
+      <text wx:else class="detail-description detail-description-empty">创作者暂未留下作品故事</text>
+
+      <navigator class="author-card" url="/pages/homepage/homepage?id={{photo._openid}}" hover-class="card-hover">
+        <image class="author-avatar" src="{{photo.avatarUrl || '/images/icons/avatar.png'}}" mode="aspectFill" />
+        <view class="author-copy">
+          <text class="author-name">{{photo.nickName || '光影创作者'}}</text>
+          <text class="author-note">查看创作者的更多作品</text>
+        </view>
+        <view
+          wx:if="{{!isMine}}"
+          class="follow-button {{followed ? 'followed-button' : ''}}"
+          data-stop="true"
+          catchtap="toggleFollow"
+        >{{followed ? '已关注' : '关注'}}</view>
+      </navigator>
+    </view>
+
+    <view class="detail-bottom-space"></view>
+    <view class="detail-actions">
+      <view class="detail-action {{favorited ? 'detail-action-active' : ''}}" bindtap="toggleFavorite" hover-class="action-hover">
+        <image src="{{favorited ? '/images/community/bookmark-filled.svg' : '/images/community/bookmark.svg'}}" />
+        <text>{{favorited ? '已收藏' : '收藏'}}</text>
+      </view>
+      <view class="detail-action" bindtap="downloadPhoto" hover-class="action-hover">
+        <image src="/images/community/download.svg" />
+        <text>下载</text>
+      </view>
+      <button class="detail-action share-action" open-type="share" hover-class="action-hover">
+        <image src="/images/community/share.svg" />
+        <text>分享</text>
+      </button>
+      <view class="detail-action" bindtap="previewPhoto" hover-class="action-hover">
+        <image src="/images/community/expand.svg" />
+        <text>预览</text>
+      </view>
+      <view wx:if="{{isMine}}" class="detail-action detail-action-danger" bindtap="deletePhoto" hover-class="action-hover">
+        <image src="/images/community/trash.svg" />
+        <text>删除</text>
+      </view>
+    </view>
+  </block>
+</view>
